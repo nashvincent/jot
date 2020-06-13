@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 
@@ -34,7 +34,11 @@ const styles = StyleSheet.create({
 })
 
 export default function HomeScreen({ navigation }) {
-  const { state, deleteJot } = useContext(Context)
+  const { state, deleteJot, getAllJots } = useContext(Context)
+
+  useEffect(() => {
+    getAllJots()
+  }, [])
 
   navigation.setOptions({
     headerRight: () => (

@@ -24,11 +24,3 @@ export default function App() {
     </Provider>
   )
 }
-
-// options={({ navigation }) => ({
-//   headerRight: props => (
-//     <TouchableOpacity onPress={() => }>
-//       <MaterialIcons name="add-circle" size={24} />
-//     </TouchableOpacity>
-//   ),
-// })}
