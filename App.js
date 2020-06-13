@@ -1,19 +1,34 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+import { Provider } from './src/context/JotContext'
+import HomeScreen from './src/screens/HomeScreen'
+import DetailsScreen from './src/screens/DetailsScreen'
+import CreateScreen from './src/screens/CreateScreen'
+import EditScreen from './src/screens/EditScreen'
+
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+    <Provider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="Create" component={CreateScreen} />
+          <Stack.Screen name="Edit" component={EditScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// options={({ navigation }) => ({
+//   headerRight: props => (
+//     <TouchableOpacity onPress={() => }>
+//       <MaterialIcons name="add-circle" size={24} />
+//     </TouchableOpacity>
+//   ),
+// })}
