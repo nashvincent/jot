@@ -11,6 +11,7 @@ const jotReducer = (state, action) => {
           id: action.payload.id,
           title: action.payload.title,
           content: action.payload.content,
+          color: action.payload.color,
         },
       ]
 
@@ -47,12 +48,13 @@ const getAllJots = dispatch => {
 }
 
 const addJot = dispatch => {
-  return async (title, content, callback) => {
+  return async (title, content, color, callback) => {
     const id = Math.floor(Math.random() * 99999)
     const payload = {
       id,
       title,
       content,
+      color,
     }
     try {
       await AsyncStorage.setItem(`${id}`, JSON.stringify(payload))
@@ -70,7 +72,6 @@ const addJot = dispatch => {
 const deleteJot = dispatch => {
   return async id => {
     try {
-      console.log(id)
       await AsyncStorage.removeItem(`${id}`)
       dispatch({ type: 'DELETE_JOT', payload: id })
     } catch (error) {
@@ -80,12 +81,12 @@ const deleteJot = dispatch => {
 }
 
 const editJot = dispatch => {
-  return async (id, title, content, callback) => {
+  return async (id, title, content, color, callback) => {
     try {
-      let updatedJot = { id, title, content }
+      let updatedJot = { id, title, content, color }
       await AsyncStorage.setItem(`${id}`, JSON.stringify(updatedJot))
 
-      dispatch({ type: 'EDIT_JOT', payload: { id, title, content } })
+      dispatch({ type: 'EDIT_JOT', payload: { id, title, content, color } })
       if (callback) callback()
     } catch (error) {
       console.log(error)

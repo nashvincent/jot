@@ -9,14 +9,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  jotView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 18,
-    paddingHorizontal: 10,
-    borderTopWidth: 1,
-    borderColor: 'gray',
-  },
   jotText: {
     fontSize: 20,
   },
@@ -35,7 +27,6 @@ const styles = StyleSheet.create({
 
 export default function HomeScreen({ navigation }) {
   const { state, deleteJot, getAllJots } = useContext(Context)
-
   useEffect(() => {
     getAllJots()
   }, [])
@@ -57,7 +48,25 @@ export default function HomeScreen({ navigation }) {
           <TouchableOpacity
             onPress={() => navigation.navigate('Details', { id: item.id })}
           >
-            <View style={styles.jotView}>
+            <View
+              style={{
+                backgroundColor: item.color,
+                width: '96%',
+                borderRadius: 20,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingVertical: 25,
+                paddingHorizontal: 10,
+                borderColor: 'gray',
+                marginVertical: 6,
+                marginHorizontal: 8,
+                elevation: 5,
+                shadowColor: 'black',
+                shadowOpacity: 0.26,
+                shadowOffset: { width: 0, height: 2 },
+                shadowRadius: 10,
+              }}
+            >
               <Text style={styles.jotText}>{item.title}</Text>
               <TouchableOpacity onPress={() => deleteJot(item.id)}>
                 <MaterialIcons style={styles.jotIcon} name="delete" />

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
 
+import ColorPicker from './ColorPicker'
+
 const styles = StyleSheet.create({
   formView: {
     marginVertical: 20,
@@ -24,6 +26,9 @@ const styles = StyleSheet.create({
 export default function JotForm({ handleSubmit, initialState }) {
   const [title, setTitle] = useState(initialState.title)
   const [content, setContent] = useState(initialState.content)
+  const [color, setColor] = useState(initialState.color)
+
+  const handleChangeColor = newColor => setColor(newColor)
 
   return (
     <View style={styles.formView}>
@@ -39,8 +44,9 @@ export default function JotForm({ handleSubmit, initialState }) {
         value={content}
         onChangeText={text => setContent(text)}
       />
+      <ColorPicker color={color} handleChangeColor={handleChangeColor} />
       <View style={{ marginTop: 20 }}>
-        <Button title="Save" onPress={() => handleSubmit(title, content)} />
+        <Button title="Save" onPress={() => handleSubmit(title, content, color)} />
       </View>
     </View>
   )
@@ -50,5 +56,6 @@ JotForm.defaultProps = {
   initialState: {
     title: '',
     content: '',
+    color: 'white',
   },
 }

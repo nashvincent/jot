@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import React, { useContext } from 'react'
 
 import { Context } from '../context/JotContext'
 import JotForm from '../components/JotForm'
@@ -9,8 +8,8 @@ export default function CreateScreen({ navigation }) {
 
   return (
     <JotForm
-      handleSubmit={(title, content) => {
-        addJot(title, content, () => navigation.navigate('Home'))
+      handleSubmit={(title, content, color) => {
+        addJot(title, content, color, () => navigation.navigate('Home'))
       }}
     />
   )

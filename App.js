@@ -10,6 +10,9 @@ import EditScreen from './src/screens/EditScreen'
 
 const Stack = createStackNavigator()
 
+// TODO: Add background color to state
+// TODO: Add a color picker in the JotForm component
+// TODO: Update action creators and reducers to account for color
 export default function App() {
   return (
     <Provider>

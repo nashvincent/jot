@@ -6,14 +6,22 @@ import { Context } from '../context/JotContext'
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 20,
-    marginHorizontal: 10,
+    marginVertical: 10,
+    marginHorizontal: 6,
+    justifyContent: 'center',
+  },
+  box: {
+    height: '60%',
   },
   title: {
+    marginVertical: 10,
     fontSize: 30,
+    marginHorizontal: 8,
   },
   content: {
     fontSize: 22,
+    marginVertical: 10,
+    marginHorizontal: 8,
   },
 })
 
@@ -24,7 +32,7 @@ export default function DetailsScreen({ route, navigation }) {
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Edit', { id })}>
-        <MaterialIcons style={{ marginRight: 10 }} name="edit" size={35} />
+        <MaterialIcons style={{ marginRight: 10 }} name="edit" size={30} />
       </TouchableOpacity>
     ),
   })
@@ -33,8 +41,12 @@ export default function DetailsScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{currentJot.title}</Text>
-      <Text style={styles.content}>{currentJot.content}</Text>
+      <View
+        style={{ height: '50%', backgroundColor: currentJot.color, borderRadius: 20 }}
+      >
+        <Text style={styles.title}>{currentJot.title}</Text>
+        <Text style={styles.content}>{currentJot.content}</Text>
+      </View>
     </View>
   )
 }
